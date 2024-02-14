@@ -15,9 +15,9 @@ const livros = [
     }
 ]
 
-function buscaLivre(id) {
+function buscaLivro(id) {
     return livros.findIndex(livro => {
-        return livro.id === number(id);
+        return livro.id === Number(id);
     })
 }
 
@@ -32,12 +32,27 @@ app.get("/livros", (req, res) => {
 });
 
 app.get("/livros/:id", (req, res) => {
-
+    const index = buscaLivro(req.params.id);
+    res.status(200).json(livros[index])
 })
+
+app.put("/livros/:id", (req, res) => {
+    const index = buscaLivro(req.params.id);
+    livros[index].titulo = req.body.titulo;
+    res.status(200).json(livros[index])
+})
+
+app.delete("/livros/:id", (req, res) => {
+    const index = buscaLivro(req.params.id);
+    livros.splice(index, 1);
+    res.status(204).send("deletado com sucesso");
+});
 
 app.post("/livros", (req, res) => {
     livros.push(req.body);
     res.status(201).send("livro cadastrado com sucesso")
 })
+
+
 
 export default app;
