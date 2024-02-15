@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
-
-mongoose.connect()
-
-
-mn
+import mongoose, { mongo } from "mongoose";
 
 
 
-//mongodb+srv://Gustavo:psx95685@mydatabase.idwagmm.mongodb.net/?retryWrites=true&w=majority
+async function connDb() {
+    mongoose.connect(process.env.DB_CONNECTION_STRING);
+    return mongoose.connection;
+}
+
+export default connDb;

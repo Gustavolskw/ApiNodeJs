@@ -1,58 +1,20 @@
 import express from "express";
+import connDb from "./config/dbConnect.js";
+import routes from "./routes/index.js";
 
+
+const connection = await connDb();
+
+connection.on("erro", (erro) => {
+    console.error("Erro de Conexao", erro);
+})
+
+
+connection.once("open", () => {
+    console.log("Conection Stablished with success");
+})
 const app = express();
 
-app.use(express.json());
-
-const livros = [
-    {
-        id: 1,
-        titulo: "senhor dos aneis"
-    },
-    {
-        id: 2,
-        titulo: "hobbit"
-    }
-]
-
-function buscaLivro(id) {
-    return livros.findIndex(livro => {
-        return livro.id === Number(id);
-    })
-}
-
-
-
-app.get("/", (req, res) => {
-    res.status(200).send("curso de node js");
-})
-
-app.get("/livros", (req, res) => {
-    res.status(200).json(livros);
-});
-
-app.get("/livros/:id", (req, res) => {
-    const index = buscaLivro(req.params.id);
-    res.status(200).json(livros[index])
-})
-
-app.put("/livros/:id", (req, res) => {
-    const index = buscaLivro(req.params.id);
-    livros[index].titulo = req.body.titulo;
-    res.status(200).json(livros[index])
-})
-
-app.delete("/livros/:id", (req, res) => {
-    const index = buscaLivro(req.params.id);
-    livros.splice(index, 1);
-    res.status(204).send("deletado com sucesso");
-});
-
-app.post("/livros", (req, res) => {
-    livros.push(req.body);
-    res.status(201).send("livro cadastrado com sucesso")
-})
-
-
+routes(app);
 
 export default app;
