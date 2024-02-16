@@ -70,7 +70,7 @@ class LivroController {
     }
 
     static async listarPorEditora(req, res) {
-        const editora = req.query.editora
+        const editora = req.query.editora;
     }
 
 
