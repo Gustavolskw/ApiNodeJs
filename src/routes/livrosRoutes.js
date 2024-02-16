@@ -17,10 +17,10 @@ routes.get("/livros", LivroController.listarLivros);
 routes.get("/livros/:id", LivroController.listarLivroPorId)
 
 
-routes.put("/livros/:id",)
+routes.put("/livros/:id", LivroController.AtualizarLivro)
 
-routes.delete("/livros/:id",)
-routes.post("/livros",)
+routes.delete("/livros/:id", LivroController.deletarLivro)
+routes.post("/livros", LivroController.cadastrarLivros)
 
 
 
