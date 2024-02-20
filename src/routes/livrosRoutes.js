@@ -5,7 +5,7 @@ const routes = express.Router();
 
 
 routes.route("/").get((req, res) => {
-    res.status(200).send("Teste")
+    res.status(200).send("Teste");
 })
 
 routes.get("/teste", (req, res) => {
@@ -13,14 +13,15 @@ routes.get("/teste", (req, res) => {
 })
 
 routes.get("/livros", LivroController.listarLivros);
+routes.get("/livros/busca", LivroController.listarPorEditora);
+routes.get("/livros/:id", LivroController.listarLivroPorId);
 
-routes.get("/livros/:id", LivroController.listarLivroPorId)
 
+routes.put("/livros/:id", LivroController.AtualizarLivro);
 
-routes.put("/livros/:id", LivroController.AtualizarLivro)
+routes.delete("/livros/:id", LivroController.deletarLivro);
+routes.post("/livros", LivroController.cadastrarLivros);
 
-routes.delete("/livros/:id", LivroController.deletarLivro)
-routes.post("/livros", LivroController.cadastrarLivros)
 
 
 

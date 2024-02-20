@@ -1,0 +1,162 @@
+[{
+  "_id": {
+    "$oid": "65ce723b66455664a529ad16"
+  },
+  "titulo": "Lord of the rings return of the king",
+  "editora": "classicals",
+  "preco": "12",
+  "paginas ": "380"
+},
+{
+  "_id": {
+    "$oid": "65cf94ab8917f7951fc616f9"
+  },
+  "titulo": "Game of thrones",
+  "editora": "classicos",
+  "preco": 50,
+  "paginas": 220
+},
+{
+  "_id": {
+    "$oid": "65d4f818a176370bf6eb26f9"
+  },
+  "titulo": "O Senhor dos Anéis",
+  "editora": "HarperCollins",
+  "preco": 50,
+  "paginas": 1200,
+  "autor": {
+    "nome": "J.R.R. Tolkien",
+    "nacionalidade": "Africa do Sul",
+    "_id": {
+      "$oid": "65cfa6313377e79117211658"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "65d4f825a176370bf6eb26fd"
+  },
+  "titulo": "O Hobbit",
+  "editora": "Martins Fontes",
+  "preco": 40,
+  "paginas": 300,
+  "autor": {
+    "nome": "J.R.R. Tolkien",
+    "nacionalidade": "Africa do Sul",
+    "_id": {
+      "$oid": "65cfa6313377e79117211658"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "65d4f82ca176370bf6eb2701"
+  },
+  "titulo": "O Silmarillion",
+  "editora": "Wm Collins & Co",
+  "preco": 45,
+  "paginas": 368,
+  "autor": {
+    "nome": "J.R.R. Tolkien",
+    "nacionalidade": "Africa do Sul",
+    "_id": {
+      "$oid": "65cfa6313377e79117211658"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "65d4f833a176370bf6eb2705"
+  },
+  "titulo": "Contos Inacabados",
+  "editora": "HarperCollins",
+  "preco": 38,
+  "paginas": 432,
+  "autor": {
+    "nome": "J.R.R. Tolkien",
+    "nacionalidade": "Africa do Sul",
+    "_id": {
+      "$oid": "65cfa6313377e79117211658"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "65d4f83ba176370bf6eb2709"
+  },
+  "titulo": "A Queda de Gondolin",
+  "editora": "Houghton Mifflin Harcourt",
+  "preco": 42,
+  "paginas": 304,
+  "autor": {
+    "nome": "J.R.R. Tolkien",
+    "nacionalidade": "Africa do Sul",
+    "_id": {
+      "$oid": "65cfa6313377e79117211658"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "65d4f842a176370bf6eb270d"
+  },
+  "titulo": "Beren e Lúthien",
+  "editora": "Houghton Mifflin Harcourt",
+  "preco": 39.9,
+  "paginas": 288,
+  "autor": {
+    "nome": "J.R.R. Tolkien",
+    "nacionalidade": "Africa do Sul",
+    "_id": {
+      "$oid": "65cfa6313377e79117211658"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "65d4f84aa176370bf6eb2711"
+  },
+  "titulo": "As Cartas de J.R.R. Tolkien",
+  "editora": "Mariner Books",
+  "preco": 55,
+  "paginas": 528,
+  "autor": {
+    "nome": "J.R.R. Tolkien",
+    "nacionalidade": "Africa do Sul",
+    "_id": {
+      "$oid": "65cfa6313377e79117211658"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "65d4f852a176370bf6eb2715"
+  },
+  "titulo": "O Livro dos Contos Perdidos",
+  "editora": "HarperCollins",
+  "preco": 36,
+  "paginas": 400,
+  "autor": {
+    "nome": "J.R.R. Tolkien",
+    "nacionalidade": "Africa do Sul",
+    "_id": {
+      "$oid": "65cfa6313377e79117211658"
+    }
+  }
+},
+{
+  "_id": {
+    "$oid": "65d4f85aa176370bf6eb2719"
+  },
+  "titulo": "Árvore e Folha",
+  "editora": "HarperCollins",
+  "preco": 30,
+  "paginas": 192,
+  "autor": {
+    "nome": "J.R.R. Tolkien",
+    "nacionalidade": "Africa do Sul",
+    "_id": {
+      "$oid": "65cfa6313377e79117211658"
+    }
+  }
+}]

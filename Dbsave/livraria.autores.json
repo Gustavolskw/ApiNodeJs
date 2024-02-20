@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "65cfa6313377e79117211658"
+  },
+  "nome": "J.R.R. Tolkien",
+  "nacionalidade": "Africa do Sul"
+},
+{
+  "_id": {
+    "$oid": "65cfa9d9191cfb1cd860f5e2"
+  },
+  "nome": "J.K.Rowling",
+  "nacionalidade": "Ingles"
+},
+{
+  "_id": {
+    "$oid": "65cfa9ee191cfb1cd860f5e4"
+  },
+  "nome": "G.R.R.Martin",
+  "nacionalidade": "Ingles"
+}]
