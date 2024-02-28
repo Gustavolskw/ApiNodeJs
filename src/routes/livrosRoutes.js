@@ -5,12 +5,12 @@ const routes = express.Router();
 
 
 routes.route("/").get((req, res) => {
-    res.status(200).send("Teste");
-})
+  res.status(200).send("Teste");
+});
 
 routes.get("/teste", (req, res) => {
-    res.status(200).json("Working fine");
-})
+  res.status(200).json("Working fine");
+});
 
 routes.get("/livros", LivroController.listarLivros);
 routes.get("/livros/busca", LivroController.listarPorEditora);

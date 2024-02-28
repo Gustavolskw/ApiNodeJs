@@ -1,17 +1,32 @@
 import mongoose from "mongoose";
-import { autorEntity } from "./Autor.js";
 
-const livroEntity = new mongoose.Schema({
-    id: { type: mongoose.SchemaTypes.ObjectId },
-    titulo: { type: mongoose.Schema.Types.String, required: true },
-    editora: { type: String },
-    preco: { type: Number },
-    paginas: { type: Number },
-    autor: autorEntity
-}, {
-    versionKey: false
-});
+const livroSchema = new mongoose.Schema(
+  {
+    id: { type: String },
+    titulo: {
+      type: String,
+      required: [true, "O título do livro é obrigatório"]
+    },
+    editora: {
+      type: String,
+      required: [true, "A editora é obrigatória"]
+    },
+    paginas: {
+      type: Number,
+      required: [true, "Número de paginas é obrigatório"]
+    },
+    preco: {
+      type: Number,
+      required: [true, "Valor do Livro é obrigatório"]
+    },
+    autor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Autores",
+      required: [true, "O(a) autor(a) é obrigatório"]
+    }
+  }
+);
 
-const livro = mongoose.model("livros", livroEntity);
+const livro = mongoose.model("livros", livroSchema);
 
 export default livro;
