@@ -13,7 +13,7 @@ routes.get("/teste", (req, res) => {
 });
 
 routes.get("/livros", LivroController.listarLivros);
-routes.get("/livros/busca", LivroController.listarPorEditora);
+routes.get("/livros/search", LivroController.listarPorFiltro);
 routes.get("/livros/:id", LivroController.listarLivroPorId);
 
 
