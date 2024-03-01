@@ -1,15 +1,65 @@
 import NotFound from "../erros/NotFound.js";
 import livro from "../models/livro.js";
-import { autor } from "../models/Autor.js";
+import { autores } from "../models/Autor.js";
+
 
 class LivroController {
-
-  static listarLivros = async (req, res, next) => {
+  static listarTodosLivros = async (req, res, next) => {
     try {
-      const listaLivros = await livro.find({});
+
+      const listaLivros = await livro.find({}).sort({ autor: "asc" })
+        .populate("autor").exec();
       res.status(200).json(listaLivros);
     } catch (erro) {
       next(erro);
+    }
+  };
+  static listarLivros = async (req, res, next) => {
+    try {
+      const buscaPaginada = livro.find();
+
+      req.resultado = buscaPaginada;
+      next();
+    } catch (erro) {
+      next(erro);
+    }
+  };
+
+  static listarLivroPorId = async (req, res, next) => {
+    try {
+      const id = req.params.id;
+
+      const findedBook = await livro.findById(id).populate("autor");
+
+      if (findedBook !== null) {
+        res.status(200).json(findedBook);
+      } else {
+        next(new NotFound("Id de livro nao encontrado!"));
+      }
+
+    } catch (erro) {
+      next(erro);
+    }
+  };
+
+  static listarPorFiltro = async (req, res, next) => {
+    try {
+      const busca = await processaBusca(req.query);
+      if (busca !== null) {
+        const livrosPorEditora = livro.find(busca).populate("autor");
+        if (livrosPorEditora) {
+          req.resultado = livrosPorEditora;
+          next();
+        } else {
+          next(new NotFound("Id da Editora nao encontrado!"));
+        }
+      } else {
+        res.status(200).json({ message: "nome do Autor Incorreto ou inexistente!" });
+      }
+
+
+    } catch (err) {
+      next(err);
     }
   };
 
@@ -24,34 +74,13 @@ class LivroController {
     }
   };
 
-  static listarLivroPorId = async (req, res, next) => {
-    try {
-      const id = req.params.id;
-
-      const findedBook = await livro.findById(id);
-      const autorDoLivro = await autor.findById(findedBook.autor);
-      findedBook.autor = autorDoLivro;
-      const livroCompleto = {
-        livro: { findedBook }
-      };
-      if (findedBook !== null) {
-        res.status(200).json(livroCompleto);
-      } else {
-        next(new NotFound("Id de livro nao encontrado!"));
-      }
-
-    } catch (erro) {
-      next(erro);
-    }
-  };
-
   static AtualizarLivro = async (req, res, next) => {
     try {
       const id = req.params.id;
       const livroEnt = req.body;
 
       if (livroEnt.autor) {
-        const dadosAutor = await autor.findById(livroEnt.autor);
+        const dadosAutor = await autores.findById(livroEnt.autor);
         livroEnt.autor = dadosAutor;
       }
 
@@ -80,39 +109,26 @@ class LivroController {
       next(erro);
     }
   };
-
-  static listarPorFiltro = async (req, res, next) => {
-    try {
-      const busca = processaBusca(req.query);
-
-      const livrosPorEditora = await livro.find(busca);
-
-      if (livrosPorEditora) {
-        res.status(200).json(livrosPorEditora);
-      } else {
-        next(new NotFound("Id da Editora nao encontrado!"));
-      }
-
-
-    } catch (err) {
-      next(err);
-    }
-  };
-
-
-
-
 }
 
-function processaBusca(params) {
-  const { editora, titulo, minPags, maxPags } = params;
+async function processaBusca(params) {
+  const { editora, titulo, minPags, maxPags, nomeAutor } = params;
 
   const regexpTitulo = new RegExp(titulo, "i");
+  const RegAutorNome = new RegExp(nomeAutor, "i");
 
-  const busca = {};
+  let busca = {};
   if (editora) busca.editora = { $regex: editora, $options: "i" };
   if (titulo) busca.titulo = regexpTitulo;
+  if (nomeAutor) {
+    const autorN = await autores.findOne({ nome: RegAutorNome });
 
+    if (autorN !== null) {
+      busca.autor = autorN._id;
+    } else {
+      busca = null;
+    }
+  }
   if (minPags || maxPags) busca.paginas = {};
   //$gte: maior ou igual a que :{parmas}
   if (minPags) busca.paginas.$gte = minPags;

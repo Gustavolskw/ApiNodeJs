@@ -11,6 +11,6 @@ const autorEntity = new mongoose.Schema({
 
 }, { versionKey: false });
 
-const autor = mongoose.model("Autores", autorEntity);
+const autores = mongoose.model("Autores", autorEntity);
 
-export { autor, autorEntity };
+export { autores, autorEntity };
